@@ -1,0 +1,24 @@
+{
+  "queries": [
+    {
+      "id": "q1",
+      "retrieved": ["A", "B", "C", "D"],
+      "relevant": ["A", "C"]
+    },
+    {
+      "id": "q2",
+      "retrieved": ["D", "E", "F", "G"],
+      "relevant": ["E"]
+    },
+    {
+      "id": "q3",
+      "retrieved": ["H", "I", "J", "K"],
+      "relevant": ["Z"]
+    },
+    {
+      "id": "q4",
+      "retrieved": ["L", "M", "N", "O"],
+      "relevant": ["N", "O"]
+    }
+  ]
+}
