@@ -1,5 +1,6 @@
 import pytest
 from rag_bench.validation import validate_dataset
+from rag_bench.validation import validate_retriever
 
 
 def test_valid_dataset():
@@ -84,3 +85,17 @@ def test_invalid_relevant_type():
 def test_invalid_datasets(dataset):
     with pytest.raises(ValueError):
         validate_dataset(dataset)
+
+@pytest.mark.parametrize("retriever, should_fail", [
+    ({"results": {"q1": []}}, False),
+    ({"results": {}}, False),
+    ({"results": {"q1": ["A", "A"]}}, True),
+    ({"results": {"q1": ["A", "   "]}}, True),
+    ({"results": {"q1": "A"}}, True)
+])
+def test_invalid_retriever(retriever, should_fail):
+    if should_fail:
+        with pytest.raises(ValueError):
+            validate_retriever(retriever)
+    else:
+        validate_retriever(retriever)

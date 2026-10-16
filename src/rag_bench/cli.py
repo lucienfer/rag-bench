@@ -36,7 +36,7 @@ def evaluate(
 
         metric = evaluate_retriever(dataset_json, results_json, k)
     except json.JSONDecodeError:
-        typer.error("Error: Invalid JSON file", err=True)
+        typer.echo("Error: Invalid JSON file", err=True)
         raise typer.Exit(code=1)
     except ValueError:
         typer.echo("Error: Invalid Dataset", err=True)

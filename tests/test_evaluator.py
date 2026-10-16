@@ -90,10 +90,23 @@ from rag_bench.evaluate_retriever import compare_queries
             ]
         },
         False
-    )
+    ),
+    (
+        {
+            "queries": [
+                {"id": "q1", "relevant": ["A", "C"]},
+                {"id": "q2", "relevant": ["E"]}
+            ]
+        },
+        {
+            "results": {
+            }
+        },
+        2,
+        ValueError,
+        True
+    ),
 ])
-
-
 
 def test_evaluate_retriever(dataset, retriever_results, k, expected, should_fail):
     if should_fail:

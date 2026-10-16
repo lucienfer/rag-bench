@@ -19,7 +19,7 @@ It helps developers compare retrieval configurations, identify poorly performing
 
 ## Requirements
 
-- Python 3.14+
+- Python 3.11+
 - [uv](https://docs.astral.sh/uv/)
 
 ## Installation

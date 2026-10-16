@@ -4,6 +4,10 @@ def recall_at_k(
     k: int
 ) -> float:
     relevant_set = set(relevant)
+
+    if k <= 0:
+        raise ValueError("k must be positive")
+
     if len(relevant) == 0 :
         return 0.0
     retrieved_set = set(retrieved[:k])

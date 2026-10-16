@@ -63,3 +63,48 @@ def validate_dataset(dataset: dict) -> None:
                 )
 
             result_ids.add(result)
+
+def validate_retriever(retriever_results: dict):
+    if not isinstance(retriever_results, dict):
+        raise ValueError("Retriever results must be a dictionary")
+
+    if "results" not in retriever_results:
+        raise ValueError(
+            "dataset doesn't have \"results\" key."
+        )
+
+    results = retriever_results["results"]
+
+    if not isinstance(results, dict):
+        raise ValueError(
+            "Results is not a dict"
+        )
+
+    for key, value in results.items():
+        if not isinstance(key, str):
+            raise ValueError(
+                "Key is not a str"
+            )
+
+        if not key.strip():
+            raise ValueError("Key is empty")
+
+        if not isinstance(value, list):
+            raise ValueError(
+                "Value is not a list"
+            )
+
+        if not all(isinstance(chunk, str) and bool(chunk.strip()) for chunk in value):
+            raise ValueError(
+                "Value is not a list of str"
+            )
+
+        chunk_set = set()
+
+        for chunk in value:
+            if chunk in chunk_set:
+                raise ValueError(
+                    "Chunk already exist"
+                )
+
+            chunk_set.add(chunk)
